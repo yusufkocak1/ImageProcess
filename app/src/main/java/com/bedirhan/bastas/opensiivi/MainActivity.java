@@ -1,7 +1,6 @@
 package com.bedirhan.bastas.opensiivi;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceView;
@@ -18,6 +17,7 @@ import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 
 public class MainActivity extends Activity implements CameraBridgeViewBase.CvCameraViewListener2 {
+
 
 
     private static String TAG = "MainActivity";
@@ -100,9 +100,10 @@ public class MainActivity extends Activity implements CameraBridgeViewBase.CvCam
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         mRgba = inputFrame.rgba();
+       
 
-        Imgproc.cvtColor(mRgba,imgGray,Imgproc.COLOR_RGB2GRAY);
-
+       // Imgproc.cvtColor(mRgba,imgGray,Imgproc.COLOR_RGB2GRAY);
+        Imgproc.cvtColor(mRgba, mRgba, Imgproc.COLOR_HSV2RGB, 0);
         return imgGray;
     }
 }
